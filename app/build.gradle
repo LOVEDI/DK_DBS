@@ -43,6 +43,8 @@ dependencies {
     compile 'com.facebook.fresco:fresco:1.1.0'
     compile 'de.hdodenhof:circleimageview:2.1.0'
     compile 'com.jakewharton:butterknife:8.4.0'
+    compile 'com.mylhyl:acp:1.1.7'
     apt 'com.jakewharton:butterknife-compiler:8.4.0'
     testCompile 'junit:junit:4.12'
+    compile 'com.android.support:design:23.2.0'
 }

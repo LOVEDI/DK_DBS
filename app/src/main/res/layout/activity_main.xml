@@ -4,14 +4,63 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:clipChildren="false"
     tools:context="com.zd.dk_dbs.activity.MainActivity">
+       <!-- <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/rl"
+            >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/main_title"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:layout_centerHorizontal="true"
+            android:paddingTop="10dp"
+            android:id="@+id/title_home"
+            />
+        </RelativeLayout>-->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/mian_fl"
+            >
+        </FrameLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_alignParentBottom="true"
+            android:clipChildren="false">
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:text="@string/main_bottom_one"
+                    android:layout_centerVertical="true"
+                    android:paddingLeft="5dp"
+                    android:background="@mipmap/tab_live_p"
+                    android:id="@+id/mine_bot_left"
+                    />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!" />
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:text="@string/main_bottom_one"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="-5dip"
+                    android:src="@mipmap/tab_room_p"
+                    android:id="@+id/mine_bot_center"
+                    />
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:paddingRight="5dp"
+                    android:background="@mipmap/tab_me_p"
+                    android:id="@+id/mine_bot_right"
+                    />
+
+        </RelativeLayout>
 </RelativeLayout>

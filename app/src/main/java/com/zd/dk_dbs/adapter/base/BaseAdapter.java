@@ -1,4 +1,4 @@
-package com.zd.dk_dbs.adapter;
+package com.zd.dk_dbs.adapter.base;
 
 import android.view.View;
 import android.view.ViewGroup;

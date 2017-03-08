@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">DK_DBS</string>
+    <string name="main_title">映客直播</string>
+    <string name="main_bottom_one">首页</string>
+    <string name="main_bottom_right">我的</string>
 </resources>
