@@ -51,13 +51,16 @@ public class MainActivity extends FragmentActivity {
         //提交事务
         ft.commit();
     }
-    @OnClick({R.id.mine_bot_left,R.id.mine_bot_right})
+    @OnClick({R.id.mine_bot_left,R.id.mine_bot_right,R.id.mine_bot_center})
     public void setEven(View view){
         switch (view.getId()){
             case R.id.mine_bot_left:
                 changFragment( new FragmentHome(),false);
                 break;
             case R.id.mine_bot_right:
+                changFragment( new FragmentMy(),false);
+                break;
+            case R.id.mine_bot_center:
                 changFragment( new FragmentMy(),false);
                 break;
         }

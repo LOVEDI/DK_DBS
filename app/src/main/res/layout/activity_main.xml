@@ -32,7 +32,9 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_alignParentBottom="true"
-            android:clipChildren="false">
+            android:clipChildren="false"
+            android:background="@color/blue"
+            >
                 <ImageView
                     android:layout_width="50dp"
                     android:layout_height="50dp"
@@ -44,11 +46,11 @@
                     />
 
                 <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
                     android:text="@string/main_bottom_one"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginTop="-5dip"
+                    android:layout_marginTop="-15dip"
                     android:src="@mipmap/tab_room_p"
                     android:id="@+id/mine_bot_center"
                     />
