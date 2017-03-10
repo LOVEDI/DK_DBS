@@ -15,7 +15,7 @@ import butterknife.ButterKnife;
  * Created by Administrator on 2017/3/8 0008.
  */
 
-public class FragmentMy extends BaseFragmet{
+public class FragmentMy extends BaseFragmet {
 
     @Nullable
     @Override

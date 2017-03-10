@@ -63,8 +63,9 @@ public class OkHttpHelper {
                         callBackSuccess(callBack,response,resultStr);
                     }else{
                         try {
-                            Log.e("TAG","进来之后抛异常了");
+
                             Object object = mGson.fromJson(resultStr,callBack.mType);
+
                             //封装 在handler中运行（主线程）
                             callBackSuccess(callBack, response, object);
                         } catch (JsonSyntaxException e) {//json语法异常

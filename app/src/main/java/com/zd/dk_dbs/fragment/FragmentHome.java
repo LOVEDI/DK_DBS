@@ -73,7 +73,6 @@ public class FragmentHome extends BaseFragmet{
                 (getActivity().getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(adapter);
     }
-
     private void initFragment() {
         tabLayout.addTab(tabLayout.newTab().setText("精选"));
         tabLayout.addTab(tabLayout.newTab().setText("热门"));

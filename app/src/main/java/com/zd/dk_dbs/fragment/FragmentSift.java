@@ -6,51 +6,74 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.cjj.MaterialRefreshLayout;
+import com.cjj.MaterialRefreshListener;
+import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.zd.dk_dbs.Entity.PageResult;
-import com.zd.dk_dbs.Entity.Sift;
+import com.zd.dk_dbs.Entity.LiveIng;
 import com.zd.dk_dbs.R;
 import com.zd.dk_dbs.adapter.RVAdapter;
-import com.zd.dk_dbs.adapter.RecycleViewAdapater;
 import com.zd.dk_dbs.httprequest.Contants;
-import com.zd.dk_dbs.utils.PageUtils;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
 
+import java.lang.reflect.Type;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import okhttp3.Call;
 
 /**
  * Created by Administrator on 2017/3/8 0008.
  */
 
-public class FragmentSift extends Fragment implements PageUtils.OnPageListener{
+public class FragmentSift extends Fragment {
+
     @BindView(R.id.sift_rv)
     RecyclerView mRecyclerVeiw;
     @BindView(R.id.sift_mrl)
     MaterialRefreshLayout mRefreshLayout;
-
-    RecycleViewAdapater recycleViewAdapater;
     RVAdapter rvAdapter;
+    int page =1;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_sift,container,false);
         ButterKnife.bind(this,view);
-        PageUtils pageUtils =  PageUtils.newBuilder()
-                .setUrl(Contants.API.BASE_URL)
-                .setLoadMore(true)
-                .setOnpageListener(this)
-                .setPageSize(20)
-                .setRefreshLayout(mRefreshLayout)
-                .build(getContext(),new TypeToken<PageResult<Sift>>(){}.getType());
-        pageUtils.request();
+        initListener();
+        getData(page);
         return view;
+    }
+
+    private void initListener() {
+        mRefreshLayout.setLoadMore(true);
+        mRefreshLayout.setMaterialRefreshListener(new MaterialRefreshListener() {
+            @Override
+            public void onRefresh(MaterialRefreshLayout materialRefreshLayout) {
+                Log.e("TAG","上拉刷新");
+                refreshDate();
+                mRefreshLayout.finishRefresh();
+            }
+            @Override
+            public void onRefreshLoadMore(MaterialRefreshLayout materialRefreshLayout) {
+                //上拉加载更多...
+                Log.e("TAG","下拉加载");
+                if(page == 0) {
+                    loadMoreData();
+                }else {
+                    Toast.makeText(getContext(), "已经没有跟多数据了", Toast.LENGTH_SHORT).show();
+                }
+                mRefreshLayout.finishRefreshLoadMore();
+            }
+
+        });
     }
 
     @Override
@@ -58,27 +81,39 @@ public class FragmentSift extends Fragment implements PageUtils.OnPageListener{
         super.onActivityCreated(savedInstanceState);
     }
 
-    @Override
-    public void load(List datas, int totalPage, int totalCount) {
-      //  recycleViewAdapater = new RecycleViewAdapater(getContext(), DataUtils.getData());
-
-        rvAdapter = new RVAdapter(getContext(),0, (List<Sift>) datas);
-        mRecyclerVeiw.setAdapter(rvAdapter);
-        mRecyclerVeiw.setLayoutManager(new LinearLayoutManager(getContext()));
-        mRecyclerVeiw.setItemAnimator(new DefaultItemAnimator());
+    public void getData(int page){
+        OkHttpUtils
+                .post()
+                .url(Contants.API.BASE_URL)
+                .addParams("type","1")
+                .addParams("page", page+"")
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
+                        Log.e("TAG", "onError");
+                    }
+                    @Override
+                    public void onResponse(String response, int id) {
+                        Type type = new TypeToken<List<LiveIng.ResultBean.ListBean>>() {
+                        }.getType();
+                        Gson gson = new Gson();
+                        LiveIng a = gson.fromJson(response.toString(), LiveIng.class);
+                        List<LiveIng.ResultBean.ListBean> list = a.result.list;
+                        rvAdapter = new RVAdapter(getContext(),0, list);
+                        mRecyclerVeiw.setAdapter(rvAdapter);
+                        mRecyclerVeiw.setLayoutManager(new LinearLayoutManager(getContext()));
+                        mRecyclerVeiw.setItemAnimator(new DefaultItemAnimator());
+                    }
+                });
     }
-
-    @Override
-    public void refresh(List datas, int totalPage, int totalCount) {
-    rvAdapter.clearData();
-        rvAdapter.addData(datas);
-        mRecyclerVeiw.scrollToPosition(0);
-
+    private void refreshDate(){
+        Log.e("TAG","加载了么？");
+        page=1;
+        getData(page);
     }
-
-    @Override
-    public void loadMore(List datas, int totalPage, int totalCount) {
-        rvAdapter.addData(rvAdapter.getItemCount(),datas);
-        mRecyclerVeiw.scrollToPosition(rvAdapter.getItemCount());
+    private void loadMoreData(){
+        page += 1;
+        getData(page);
     }
 }

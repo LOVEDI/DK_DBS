@@ -3,7 +3,6 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
     <com.cjj.MaterialRefreshLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -14,12 +13,11 @@
         app:wave_color="#90ffffff"
         app:progress_colors="@array/material_colors"
         app:wave_height_type="higher"
-        android:id="@+id/hot_mrl"
-        >
+        android:id="@+id/hot_mrl">
         <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/sift_rv"
+            android:id="@+id/hot_rv"
             ></android.support.v7.widget.RecyclerView>
     </com.cjj.MaterialRefreshLayout>
 

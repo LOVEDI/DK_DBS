@@ -22,18 +22,25 @@
             android:id="@+id/title_home"
             />
         </RelativeLayout>-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/main_rl"
+            >
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:id="@+id/mian_fl"
             >
         </FrameLayout>
+        </RelativeLayout>
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_alignParentBottom="true"
             android:clipChildren="false"
             android:background="@color/blue"
+            android:id="@+id/main_rl"
             >
                 <ImageView
                     android:layout_width="50dp"
@@ -44,7 +51,6 @@
                     android:background="@mipmap/tab_live_p"
                     android:id="@+id/mine_bot_left"
                     />
-
                 <ImageView
                     android:layout_width="100dp"
                     android:layout_height="100dp"

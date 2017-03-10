@@ -26,10 +26,18 @@ public class PageUtils {
     private static final int STATE_REFRESH = 1;//刷新
     private static final int STATE_MORE = 2;//加载更多
     private int state =STATE_NORMAL;//默认状态是正常状态
-
     private OkHttpHelper okHttpHelper;
     private static Builder builder;
+    private  OnPageListener pageListener;
 
+    private Context context;
+    private String url;
+    private MaterialRefreshLayout refreshLayout;
+    private boolean canLoadMore;
+    private int tatalPage = 1;
+    private int pageIndex = 1;//页码
+    private int pageSize = 2;
+    private HashMap<String, Object> params = new HashMap<>(5);
     //网络请求你
     public void request(){
         requestData();
@@ -37,18 +45,17 @@ public class PageUtils {
 
     private PageUtils(){
         okHttpHelper = OkHttpHelper.getInstance();
-        initRefreshLayout();
     }
     public static Builder newBuilder(){
         builder = new Builder();
         return builder;
     }
     public void putParam(String key,Object value){
-        builder.putParam(key,value);
+        this.putParam(key,value);
     }
     private void initRefreshLayout(){
-        builder.refreshLayout.setLoadMore(builder.canLoadMore);//开始加载
-        builder.refreshLayout.setMaterialRefreshListener(new MaterialRefreshListener() {
+        this.refreshLayout.setLoadMore(this.canLoadMore);//开始加载
+        this.refreshLayout.setMaterialRefreshListener(new MaterialRefreshListener() {
             @Override
             public void onRefresh(MaterialRefreshLayout materialRefreshLayout) {
                 refreshDate();
@@ -56,37 +63,41 @@ public class PageUtils {
 
             @Override
             public void onRefreshLoadMore(MaterialRefreshLayout materialRefreshLayout) {
-                if(builder.pageIndex <= builder.tatalPage) {
+                Log.e("TAG","pageIndex===="+pageIndex);
+                if(pageIndex < tatalPage) {
                     loadMoreData();
                 }else {
-                    Toast.makeText(builder.context, "已经没有跟多数据了", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "已经没有跟多数据了", Toast.LENGTH_SHORT).show();
+                    refreshLayout.finishRefreshLoadMore();
                 }
             }
         });
     }
     private void refreshDate(){
-        builder.pageIndex=1;
+        this.pageIndex=1;
         state=STATE_REFRESH;
         requestData();
     }
     private void loadMoreData(){
-        builder.pageIndex += 1;
+        this.pageIndex += 1;
         state = STATE_MORE;
         requestData();
     }
     private void requestData(){
-        okHttpHelper.get(buildUrl(),
-                new RequestCallBack(builder.context));
+       /* okHttpHelper.get(buildUrl(),
+                new RequestCallBack(this.context));*/
+        okHttpHelper.post(buildUrl(), params,
+                new RequestCallBack(this.context));
     }
     private String buildUrl(){
-        Log.e("TAG","打印出来的url是什么："+builder.url +"?" +builderUrlParams());
-        return  builder.url +"?" +builderUrlParams();
+        Log.e("TAG","打印出来的url是什么："+this.url +"?" +builderUrlParams());
+        return  this.url +"?" +builderUrlParams();
     }
 
     private String builderUrlParams() {
-        HashMap<String,Object> map = builder.params;
-        map.put("curPage",builder.pageIndex);
-        map.put("pageSize",builder.pageSize);
+        HashMap<String,Object> map = this.params;
+        map.put("curPage",this.pageIndex);
+        map.put("pageSize",this.pageSize);
         StringBuffer sb = new StringBuffer();
         for (Map.Entry<String,Object> entry : map.entrySet()){
             sb.append(entry.getKey()+"="+entry.getValue());
@@ -107,21 +118,21 @@ public class PageUtils {
         Log.e("TAG","totalCount===？"+totalCount);
         switch (state) {
             case  STATE_NORMAL:
-                if(builder.onPageListener != null) {
-                    builder.onPageListener.load(datas,totalPage,totalCount);
+                if(this.pageListener != null) {
+                    this.pageListener.load(datas,totalPage,totalCount);
                 }
                 break;
             case STATE_REFRESH:
-                if(builder.onPageListener != null) {
-                    builder.onPageListener.refresh(datas,totalPage,totalCount);
+                if(this.pageListener != null) {
+                    this.pageListener.refresh(datas,totalPage,totalCount);
                 }
-                builder.refreshLayout.finishRefresh();
+                this.refreshLayout.finishRefresh();
                 break;
             case STATE_MORE:
-                if(builder.onPageListener != null) {
-                    builder.onPageListener.loadMore(datas,totalPage,totalCount);
+                if(this.pageListener != null) {
+                    this.pageListener.loadMore(datas,totalPage,totalCount);
                 }
-                builder.refreshLayout.finishRefreshLoadMore();
+                this.refreshLayout.finishRefreshLoadMore();
                 break;
         }
     }
@@ -138,16 +149,12 @@ public class PageUtils {
         private String url;
         private MaterialRefreshLayout refreshLayout;
         private boolean canLoadMore;
-
         private int tatalPage = 1;
         private int pageIndex = 1;//页码
         private int pageSize = 2;
 
         private HashMap<String, Object> params = new HashMap<>(5);
         private OnPageListener onPageListener;
-
-
-
         public Builder setOnpageListener(OnPageListener onpageListener){
             this.onPageListener = onpageListener;
             return builder;
@@ -182,7 +189,18 @@ public class PageUtils {
             this.type = type;
             this.context = context;
             validate();
-            return new PageUtils();
+            PageUtils pageUtils = new PageUtils();
+            pageUtils.pageListener = this.onPageListener;
+            pageUtils.context = this.context;
+            pageUtils.url = this.url;
+            pageUtils.refreshLayout = this.refreshLayout;
+            pageUtils.canLoadMore = this.canLoadMore;
+            pageUtils.tatalPage = this.tatalPage;
+            pageUtils.pageIndex = this.pageIndex;
+            pageUtils.pageSize = this.pageSize;
+            pageUtils.params = this.params;
+            pageUtils.initRefreshLayout();
+            return pageUtils;
         }
         private void validate(){
             if(context==null) {
