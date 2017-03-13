@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/dbsing_title"
+        >
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            fresco:actualImageScaleType="centerInside"
+            fresco:roundAsCircle="true"
+            fresco:roundingBorderWidth="1dp"
+            android:id="@+id/dbsing_title_icon"
+            android:background="@mipmap/girl"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:textColor="@color/write"
+            android:id="@+id/dbsing_name"
+            android:layout_toRightOf="@+id/dbsing_title_icon"
+            android:text="代丽君"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:textColor="@color/write"
+            android:id="@+id/dbsing_position"
+            android:layout_below="@+id/dbsing_name"
+            android:layout_toEndOf="@+id/dbsing_title_icon"
+            android:text="北京"
+            />
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/dbsing_rv"
+            android:layout_toRightOf="@+id/dbsing_position"
+            >
+        </android.support.v7.widget.RecyclerView>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        >
+    <Button
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/round_button_style"
+        android:text="聊天"
+        android:textColor="@color/write"
+        />
+
+        <Button
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/round_button_style"
+            android:text="送礼物"
+            android:textSize="10dp"
+            android:textColor="@color/write"
+            android:layout_alignParentTop="true"
+            android:layout_toStartOf="@+id/link_love"
+            android:layout_marginEnd="20dp"
+            android:id="@+id/button" />
+
+        <Button
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/round_button_style"
+            android:text="喜欢"
+            android:textColor="@color/write"
+            android:id="@+id/link_love"
+            android:paddingRight="5dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true" />
+
+    </RelativeLayout>
+
+
+   <!-- <TextView
+        android:id="@+id/member_send_good"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/icon_like_png"
+        />-->
+
+  <!--  <com.zd.dk_dbs.hurttveiw.HeartLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/heart_layout">
+        </com.zd.dk_dbs.hurttveiw.HeartLayout>-->
+
+<!--
+
+        <com.zd.dk_dbs.hurttveiw.HeartLayout
+            android:layout_width="20dip"
+            android:layout_height="300dip"
+
+            android:id="@+id/heart_layout">
+        </com.zd.dk_dbs.hurttveiw.HeartLayout>
+-->
+
+
+
+
+
+
+</RelativeLayout>

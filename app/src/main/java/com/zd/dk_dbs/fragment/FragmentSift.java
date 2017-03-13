@@ -15,15 +15,16 @@ import android.widget.Toast;
 import com.cjj.MaterialRefreshLayout;
 import com.cjj.MaterialRefreshListener;
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.zd.dk_dbs.Entity.LiveIng;
 import com.zd.dk_dbs.R;
+import com.zd.dk_dbs.activity.LinkIngActivity;
 import com.zd.dk_dbs.adapter.RVAdapter;
+import com.zd.dk_dbs.adapter.base.BaseAdapter;
 import com.zd.dk_dbs.httprequest.Contants;
+import com.zd.dk_dbs.utils.MyUtils;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
-import java.lang.reflect.Type;
 import java.util.List;
 
 import butterknife.BindView;
@@ -95,8 +96,8 @@ public class FragmentSift extends Fragment {
                     }
                     @Override
                     public void onResponse(String response, int id) {
-                        Type type = new TypeToken<List<LiveIng.ResultBean.ListBean>>() {
-                        }.getType();
+                     /*   Type type = new TypeToken<List<LiveIng.ResultBean.ListBean>>() {
+                        }.getType();*/
                         Gson gson = new Gson();
                         LiveIng a = gson.fromJson(response.toString(), LiveIng.class);
                         List<LiveIng.ResultBean.ListBean> list = a.result.list;
@@ -104,6 +105,12 @@ public class FragmentSift extends Fragment {
                         mRecyclerVeiw.setAdapter(rvAdapter);
                         mRecyclerVeiw.setLayoutManager(new LinearLayoutManager(getContext()));
                         mRecyclerVeiw.setItemAnimator(new DefaultItemAnimator());
+                        rvAdapter.setOnItemClickListener(new BaseAdapter.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(View view, int position) {
+                                MyUtils.intentShow(getContext(), LinkIngActivity.class);
+                            }
+                        });
                     }
                 });
     }

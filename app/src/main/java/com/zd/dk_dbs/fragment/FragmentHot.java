@@ -50,11 +50,6 @@ public class FragmentHot extends BaseFragmet {
         return view;
     }
 
-    @Override
-    public View createView(LayoutInflater inflater, ViewGroup container, Bundle savedInsta) {
-
-        return null;
-    }
     private void initListener() {
         mRefreshLayout.setLoadMore(true);
         mRefreshLayout.setMaterialRefreshListener(new MaterialRefreshListener() {

@@ -9,21 +9,17 @@ import android.view.ViewGroup;
 import com.zd.dk_dbs.R;
 import com.zd.dk_dbs.fragment.base.BaseFragmet;
 
-import butterknife.ButterKnife;
-
 /**
- * Created by Administrator on 2017/3/8 0008.
+ * Created by Administrator on 2017/3/10 0010.
  */
 
-public class FragmentMy extends BaseFragmet {
+public class FragmentLink2 extends BaseFragmet{
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_my,container,false);
-        ButterKnife.bind(this,view);
+        View view = inflater.inflate(R.layout.fragment_link_linking2, container, false);
         return view;
-
     }
 
 }

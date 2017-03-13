@@ -20,7 +20,6 @@ public class MyApplication extends Application {
         super.onCreate();
         //基本使用的初始化方法
         Fresco.initialize(this);
-
         CookieJarImpl cookieJar = new CookieJarImpl(new PersistentCookieStore(getApplicationContext()));
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
 //                .addInterceptor(new LoggerInterceptor("TAG"))

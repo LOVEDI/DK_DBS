@@ -43,10 +43,6 @@ public class FragmentHome extends BaseFragmet{
         initListener();
     }
 
-    @Override
-    public View createView(LayoutInflater inflater, ViewGroup container, Bundle savedInsta) {
-        return null;
-    }
 
     private void initListener() {
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));

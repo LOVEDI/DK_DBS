@@ -7,4 +7,5 @@
     <color name="read">#FF4081</color>
     <color name="write">#ffffff</color>
     <color name="blue">#B0CCE7</color>
+    <color name="backgrount_link">#030103</color>
 </resources>

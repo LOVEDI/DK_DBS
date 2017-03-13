@@ -18,7 +18,6 @@ public class LiveIng implements Serializable{
     public ResultBean result;
     public int error_code;
 
-
     public static class ResultBean implements Serializable{
         public List<ListBean> list;
         public static class ListBean implements Serializable{
