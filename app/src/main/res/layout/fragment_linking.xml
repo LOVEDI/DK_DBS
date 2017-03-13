@@ -49,11 +49,30 @@
         </android.support.v7.widget.RecyclerView>
 
     </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_above="@+id/linking_bottom"
+        >
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/dbsing_talking_rv"
+            >
+        </android.support.v7.widget.RecyclerView>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/dbsing_talking_rv"
+            />
+
+    </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:id="@+id/linking_bottom"
         >
     <Button
         android:layout_width="50dp"
