@@ -45,29 +45,76 @@
             android:layout_height="wrap_content"
             android:id="@+id/dbsing_rv"
             android:layout_toRightOf="@+id/dbsing_position"
+            android:paddingLeft="20dp"
+            android:layout_centerVertical="true"
             >
         </android.support.v7.widget.RecyclerView>
 
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/linking_bottom"
+        android:id="@+id/relativeLayout">
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="150dp"
+            android:layout_height="200dp"
+            android:id="@+id/dbsing_talking_rv"
+            android:layout_above="@+id/bottom_content"
+            android:paddingBottom="20dp"
+            >
+        </android.support.v7.widget.RecyclerView>
+
+        <TableLayout
+            android:id="@+id/bottom_content"
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:visibility="gone"
+            >
+            <TableRow>
+                <TableRow android:layout_weight="3">
+                    <EditText
+                        android:hint = "@string/input_info"
+                        android:id = "@+id/MessageText"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        />
+                </TableRow>
+                <TableRow android:layout_weight="1">
+                    <Button
+                        android:text="@string/send_msg"
+                        android:id = "@+id/MessageButton"/>
+                </TableRow>
+            </TableRow>
+        </TableLayout>
     </RelativeLayout>
     <RelativeLayout
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/bottom"
+        >
+        <org.dync.giftlibrary.widget.GiftFrameLayout
+            android:id="@+id/gift_layout1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <org.dync.giftlibrary.widget.GiftFrameLayout
+            android:id="@+id/gift_layout2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/gift_layout1"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
         android:layout_above="@+id/linking_bottom"
         >
-        <android.support.v7.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/dbsing_talking_rv"
-            >
-        </android.support.v7.widget.RecyclerView>
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/dbsing_talking_rv"
-            />
-
+        <include layout="@layout/chat_tool_box" />
     </RelativeLayout>
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -80,6 +127,8 @@
         android:background="@drawable/round_button_style"
         android:text="聊天"
         android:textColor="@color/write"
+        android:id="@+id/button_talk"
+
         />
 
         <Button
@@ -92,7 +141,7 @@
             android:layout_alignParentTop="true"
             android:layout_toStartOf="@+id/link_love"
             android:layout_marginEnd="20dp"
-            android:id="@+id/button" />
+            android:id="@+id/button_gifts" />
 
         <Button
             android:layout_width="50dp"
@@ -108,25 +157,26 @@
     </RelativeLayout>
 
 
-   <!-- <TextView
-        android:id="@+id/member_send_good"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_gravity="center"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="30dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/icon_like_png"
-        />-->
 
-  <!--  <com.zd.dk_dbs.hurttveiw.HeartLayout
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+    <!-- <TextView
+         android:id="@+id/member_send_good"
+         android:layout_width="40dp"
+         android:layout_height="40dp"
+         android:layout_gravity="center"
+         android:layout_alignParentBottom="true"
+         android:layout_alignParentRight="true"
+         android:layout_marginRight="30dp"
+         android:layout_marginBottom="10dp"
+         android:background="@drawable/icon_like_png"
+         />-->
+
+    <com.zd.dk_dbs.hurttveiw.HeartLayout
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
         android:id="@+id/heart_layout">
-        </com.zd.dk_dbs.hurttveiw.HeartLayout>-->
+        </com.zd.dk_dbs.hurttveiw.HeartLayout>
 
 <!--
 

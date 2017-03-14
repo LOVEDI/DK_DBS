@@ -4,6 +4,8 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/DK_DBS.iml" filepath="$PROJECT_DIR$/DK_DBS.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/giftlibrary/giftlibrary.iml" filepath="$PROJECT_DIR$/giftlibrary/giftlibrary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/playerlib/playerlib.iml" filepath="$PROJECT_DIR$/playerlib/playerlib.iml" />
     </modules>
   </component>
 </project>

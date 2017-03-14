@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/backgrount_link"
@@ -10,11 +12,12 @@
         android:paddingTop="50dp"
         android:paddingBottom="50dp"
         >
-        <com.facebook.drawee.view.SimpleDraweeView
+        <com.ksyun.media.player.KSYTextureView
+            android:id="@+id/texture_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@mipmap/nh1"
-            />
+            android:layout_centerInParent="true"
+            tools:targetApi="ice_cream_sandwich" />
     </RelativeLayout>
         <FrameLayout
             android:layout_width="match_parent"

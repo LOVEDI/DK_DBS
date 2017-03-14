@@ -85,7 +85,7 @@ public class FragmentSift extends Fragment {
     public void getData(int page){
         OkHttpUtils
                 .post()
-                .url(Contants.API.BASE_URL)
+                .url(Contants.API.MINE_URL)
                 .addParams("type","1")
                 .addParams("page", page+"")
                 .build()

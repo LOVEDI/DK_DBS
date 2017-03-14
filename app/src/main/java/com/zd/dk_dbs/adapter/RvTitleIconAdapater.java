@@ -5,9 +5,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.zd.dk_dbs.R;
 
 import java.util.List;
@@ -16,12 +15,12 @@ import java.util.List;
  * Created by Administrator on 2017/3/9 0009.
  */
 
-public class RecycleViewAdapater extends RecyclerView.Adapter<RecycleViewAdapater.ViewHolder>{
+public class RvTitleIconAdapater extends RecyclerView.Adapter<RvTitleIconAdapater.ViewHolder>{
     Context context;
     List<String> data;
     LayoutInflater layoutInflater;
 
-    public RecycleViewAdapater(Context context, List<String> data) {
+    public RvTitleIconAdapater(Context context, List<String> data) {
         this.context = context;
         this.data = data;
     }
@@ -29,12 +28,12 @@ public class RecycleViewAdapater extends RecyclerView.Adapter<RecycleViewAdapate
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         layoutInflater = LayoutInflater.from(context);
-        return new ViewHolder(layoutInflater.inflate(R.layout.msg_item, parent, false));
+        return new ViewHolder(layoutInflater.inflate(R.layout.title_icon_item, parent, false));
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.msg_text.setText(data.get(position));
+        holder.draweeView.setImageURI("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1489070127900&di=9bb269dd704b9e4ceb3ee6ab6a2d2a3c&imgtype=0&src=http%3A%2F%2Fg.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F2fdda3cc7cd98d10efc8b338233fb80e7bec909f.jpg");
     }
 
     @Override
@@ -43,19 +42,10 @@ public class RecycleViewAdapater extends RecyclerView.Adapter<RecycleViewAdapate
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-   //   @BindView(R.id.dbs_civ)
-        ImageView iv_title;
-    //  @BindView(R.id.dbs_cover)
-        ImageView iv_cover;
-   //     @BindView(R.id.dbs_name)
-        TextView dbs_name;
-    //    @BindView(R.id.dbs_position)
-        TextView msg_text;
-     //   @BindView(R.id.dbs_state)
-        TextView dbs_state;
+        SimpleDraweeView draweeView ;
         public ViewHolder(View itemView) {
             super(itemView);
-            msg_text = (TextView) itemView.findViewById(R.id.msg_text);
+            draweeView= (SimpleDraweeView) itemView.findViewById(R.id.dbsing_title_icon);
         }
     }
 }

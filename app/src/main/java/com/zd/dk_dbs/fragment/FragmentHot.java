@@ -82,7 +82,7 @@ public class FragmentHot extends BaseFragmet {
     public void getData(int page){
         OkHttpUtils
                 .post()
-                .url(Contants.API.BASE_URL)
+                .url(Contants.API.MINE_URL)
                 .addParams("type","1")
                 .addParams("page", page+"")
                 .build()

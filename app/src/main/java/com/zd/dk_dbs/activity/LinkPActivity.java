@@ -1,13 +1,19 @@
 package com.zd.dk_dbs.activity;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.RelativeLayout;
+import android.widget.TableLayout;
 
 import com.zd.dk_dbs.R;
 import com.zd.dk_dbs.adapter.LinkPageAdapter;
@@ -48,7 +54,7 @@ public class LinkPActivity extends BaseFragmet{
     public ArrayList<Fragment> init(){
         ArrayList<Fragment> list =  new ArrayList<>();
         list.add(new FragmentLink2());
-        list.add(new FragmentLink());
+        list.add(FragmentLink.getInstance());
         return list;
     }
     public void bindData(){
@@ -56,5 +62,35 @@ public class LinkPActivity extends BaseFragmet{
         viewPager.setAdapter(linkPageAdapter);
         viewPager.setOffscreenPageLimit(2);
         viewPager.setCurrentItem(1);
+        //点击隐藏聊天的工具
+        viewPager.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                Log.e("TAG","点击了主播1");
+                //隐藏软键盘
+                hidekey(viewPager);
+                //发送消息
+              /*  Message msg = new Message();
+                msg.what=1;
+                FragmentLink fragmentLink = new FragmentLink();
+                fragmentLink.handler.sendMessage(msg);*/
+                FragmentLink fragmentLink = FragmentLink.getInstance();
+                fragmentLink.hindeLayout(new FragmentLink.CallBack() {
+                    @Override
+                    public void hide(TableLayout tableLayout, RelativeLayout bottom) {
+                        tableLayout.setVisibility(View.GONE);
+                        bottom.setVisibility(View.GONE);
+                    }
+                });
+
+                return false;
+            }
+        });
+    }
+    //安卓隐藏软键盘
+    private void hidekey(View view){
+        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.showSoftInput(view,InputMethodManager.SHOW_FORCED);
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0); //强制隐藏键盘
     }
 }

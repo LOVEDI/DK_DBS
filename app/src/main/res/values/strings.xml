@@ -3,4 +3,6 @@
     <string name="main_title">映客直播</string>
     <string name="main_bottom_one">首页</string>
     <string name="main_bottom_right">我的</string>
+    <string name="send_msg">发送</string>
+    <string name="input_info">请输入聊天内容</string>
 </resources>

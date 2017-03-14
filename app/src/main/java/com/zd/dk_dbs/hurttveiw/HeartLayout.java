@@ -58,7 +58,7 @@ public class HeartLayout  extends RelativeLayout implements View.OnClickListener
 
     private void findViewById(Context context) {
         LayoutInflater.from(context).inflate(R.layout.ly_periscope, this);
-        bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.icon_like);
+        bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.icon_like_png);
         dHeight = bitmap.getWidth()/2;
         dWidth = bitmap.getHeight()/2;
         textHight = sp2px(getContext(), 20) + dHeight / 2;
@@ -151,7 +151,6 @@ public class HeartLayout  extends RelativeLayout implements View.OnClickListener
         mWidth = getMeasuredWidth();
         mHeight = getMeasuredHeight();
         initX = mWidth / 2 - dWidth / 2;
-
     }
 
     public AbstractPathAnimator getAnimator() {
